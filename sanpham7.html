@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn phím HE Pulsar</title>
+    <style>
+        /* Reset cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo h1 {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e63946;
+        }
+
+        /* Main Content */
+        .product-container {
+            display: flex;
+            padding: 50px 20px;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Sidebar hình ảnh nhỏ */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-gallery img {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1);
+            border-color: #e63946;
+        }
+
+        /* Ảnh lớn */
+        .main-image {
+            width: 80%; /* hoặc giá trị lớn hơn tùy ý */
+            max-width: 800px; /* Giới hạn tối đa */
+            height: auto; /* Đảm bảo không bị méo */
+            margin: 0 auto; /* Căn giữa nếu cần */
+        }
+
+        .main-image img {
+            width: 800px;
+            height: 600px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Thông tin sản phẩm */
+        .product-info {
+            max-width: 400px;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .product-info h2 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #e63946;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* Thông số kỹ thuật */
+        .specifications-container {
+            padding: 30px 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .specifications-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ddd;
+            padding-bottom: 5px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Switch Nam Châm */
+        .switch-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 20px;
+            background-color: #ffffff;
+            color: #333;
+            align-items: flex-start;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1400px;
+        }
+
+        .switch-container .image {
+            flex: 2;
+        }
+
+        .switch-container .image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content {
+            flex: 1.5;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .switch-container .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .switch-container .content h3 {
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .switch-container .content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .switch-container .content ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .switch-container .content ul li::before {
+            content: "\2022";
+            color: #e63946;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+        }
+
+        .switch-container .content .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>RAPID TRIGGER</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">TRANG CHỦ</a></li>
+                <li><a href="infor.html">GIỚI THIỆU</a></li>
+                <li><a href="switch.html">SWITCH</a></li>
+                <li><a href="danhgia.html">ĐÁNH GIÁ</a></li>
+                <li><a href="https://playzone.vn/collections/ba-n-phi-m-he-rapid-trigger">LINK MUA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="product-container">
+            <!-- Sidebar hình ảnh nhỏ -->
+            <div class="image-gallery">
+                <img src="img/sp7.png" alt="Bàn phím 1" onclick="changeImage(this)">
+                <img src="img/sp7-1.png" alt="Bàn phím 2" onclick="changeImage(this)">
+                <img src="img/sp7-2.png" alt="Bàn phím 3" onclick="changeImage(this)">
+                <img src="img/sp7-3.png" alt="Bàn phím 4" onclick="changeImage(this)">
+            </div>
+
+            <!-- Ảnh lớn ở giữa -->
+            <div class="main-image">
+                <img id="big-image" src="img/sp7.png" alt="Bàn phím chính">
+            </div>
+
+            <!-- Thông tin sản phẩm bên phải -->
+            <div class="product-info">
+                <h2>Bàn phím từ HE DrunkDeer G65 | Magnetic Switch - Rapid Trigger</h2>
+                <p class="price"><strong>3.630.000₫</strong></p>
+                <p>Bàn phím DrunkDeer được phân phối chính hãng tại Việt Nam bởi Phong Cách Xanh.</p>
+                <ul>
+                    <li>Ultra Response Speed: switch từ Hall Effect tốc độ phản hồi nhanh hơn 10 lần so với bàn phím cơ thông thường</li>
+                    <li>Adjustable Actuation Distance: điều chỉnh điểm nhận phím từ 0.2mm đến 3.8mm, có thể điều chỉnh từng step 0.1mm</li>
+                    <li>Rapid Trigger: kích hoạt khi nhấn, reset khi thả. Phạm vi độ nhạy Rapid Trigger từ 0.1-3.6mm, có thể điều chỉnh từng step 0.1mm</li>
+                    <li>Switch từ HE được pre-lube</li>
+                    <li>Thiết kế chân hấp thụ shock đã đăng ký bản quyền</li>          
+                </ul>
+                <p>Bảo hành: 12 tháng đổi mới</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <div class="image">
+                <p>Bàn phím từ HE DrunkDeer G65 | Magnetic Switch - Rapid Trigger</p>
+                <h1>DrunkDeer G65 - Thiết kế giúp bạn chơi game tốt hơn</h1>
+                <p>Được tạo nên giúp các game thủ bức phá khỏi giới hạn của bàn phím cơ truyền thống!</p>
+                <p>Bàn phím từ Hall Effect DrunkDeer G65 ứng dụng công nghệ switch nam châm hoàn toàn mới giúp khai phá mọi giới hạn của game thủ. Cộng thêm công nghệ Rapid Trigger, giờ đây DrunkDeer G65 phản hồi nhanh và chính xác hơn mỗi khi bạn nhấn phím và thả tay, đảm bảo mọi chuyển động của nhân vật được thực hiện cực kỳ hoàn hảo.</p>
+            </div>
+        <!-- Thông số kỹ thuật -->
+        <section class="content">
+            <h2>Thông số kỹ thuật</h2>
+            <table>
+                <tr>
+                    <th>Kích thước</th>
+                    <td>Dài: 310mm | Rộng: 102mm | Cao: 30mm</td>
+                </tr>
+                <tr>
+                    <th>Trọng lượng</th>
+                    <td>580g</td>
+                </tr>
+                <tr>
+                    <th>Keycap</th>
+                    <td>
+                        PBT (Xuyên LED) - OEM Profile<br>
+                        PBT (Không xuyên LED) - Cherry Profile<br>
+                        ABS (Xuyên LED) - OEM Profile
+                    </td>
+                </tr>
+                <tr>
+                    <th>Switch</th>
+                    <td>
+                        Magnetic Switch (hỗ trợ Rapid Trigger) - Pre-lube<br>
+                        Công nghệ không điểm chạm <br>
+                        Có thể điều chỉnh điểm nhận phím <br>
+                        Độ bền 100M lần nhấn <br>                       
+                    </td>
+                </tr>
+                <tr>
+                    <th>Mạch</th>
+                    <td>
+                        PCB trang bị cảm biến Hall <br>
+                        Chống nước IP66
+                    </td>
+                </tr>
+                <tr>
+                    <th>Kết nối</th>
+                    <td>Cáp rời (USB Type-C)</td>
+                </tr>
+                <tr>
+                    <th>Thông số khác</th>
+                    <td>
+                        Polling Rate: 1000Hz<br>
+                        Layout 65% - 68 phím<br>
+                        Đèn LED<br>
+                        Chân đế hấp thụ shock (đã đăng ký sáng chế)<br>
+                        Đệm tiêu âm tích hợp (PCB, case)<br>
+                        Hỗ trợ phần mềm chạy nền web                   
+                    </td>                   
+                </tr>
+                <tr>
+                    <th>Phụ kiện kèm theo</th>
+                    <td>
+                        Cáp USB-A to C<br>
+                    </td>              
+                </tr>
+                <tr>
+                    <th>Thương hiệu</th>
+                    <td>
+                        Designed by DrunkDeer<br>
+                    </td>            
+                </tr>
+                <tr>
+                    <th>Bảo hành</th>
+                    <td>12 tháng đổi mới</td>           
+                </tr>
+            </table>
+        </section>
+        </div>
+        <!-- Switch Nam Châm Section -->
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp7-4.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Điều chỉnh điểu nhận phím tùy thích - Adjustable Actuation Distance</h1>
+                <p>Với điểm nhận phím có thể điều chỉnh trong khoảnh từ 0.2 đến 3.6mm, switch nam châm có thể điều chỉnh thoải mái đáp ứng sở thích của bạn.</p>
+                <p>Điều này giúp bạn có thể cá nhân hóa hoàn toàn cảm giác gõ phím khi chơi game và làm việc hàng ngày. Ví dụ chơi game bạn cần độ nhạy cực cao, còn khi làm việc bạn để mức trung bình giúp trải nghiệm gõ phím thoải mái nhất.</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp7-5.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Rapid Trigger - Tính năng thay đổi hoàn toàn bộ mặt bàn phím gaming hiện nay</h1>             
+                <p>Kích hoạt phím khi được nhấn phím.</p>
+                <p>Trả phím ngay khi rời tay khỏi phím.</p>
+                <p>Tính năng Rapid Trigger hoạt động liên tục giúp nhận và thả phím lập tức theo hành độ của ngón tay, truyền tải chính xác hành động của bạn vào game với độ trễ thấp nhất.</p>
+                <h3>Công nghệ switch từ tính hoàn toàn mới - Magnetic Switch</h3>
+                <p>Switch từ khác với switch cơ học: không cần tiếp điểm cơ học để ghi nhận nhấn phím.</p>
+                <h4>Bền hơn</h4>
+                <p>Switch nam châm cung cấp độ bền 100 triệu lần nhấn - Bền hơn 2 lần so với switch cơ học truyền thống.</p>
+                <h4>Nhấn mượt hơn</h4>
+                <p>Loại bỏ nhiều bộ phận tạo âm thanh và ma sát, chỉ thanh trục linear chuyển động lên xuống giúp phím nhấn mượt hơn rất nhiều.</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp7-6.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Cấu tạo bàn phím từ DrunkDeer G65</h1>             
+                <p>Ngoài thiết kế các bộ phận đạt chuẩn bàn phím cơ hiện đại, DrunkDeer G65 còn có chân giảm chấn "Shock-absorbing" đã được đăng ký bản quyền giúp trải nghiệm gõ phím tray-mount êm tay hơn, âm thanh dễ chịu hơn.</p>               
+                <ol>
+                    <li>Keycap</li>
+                    <li>Switch nam châm</li>
+                    <li>Plate</li>
+                    <li>Đệm tiêu âm silicon</li>
+                    <li>PCB tích hợp cảm biến Hall</li>
+                    <li>Case foam</li>
+                    <li>Case nhựa ABS</li>
+                    <li>Chân đế hấp thụ rung động</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+        
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 RAPID TRIGGER. Tất cả các quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Script thay đổi ảnh lớn -->
+    <script>
+        function changeImage(smallImg) {
+            const bigImage = document.getElementById('big-image');
+            bigImage.src = smallImg.src;
+        }
+    </script>
+</body>
+</html>

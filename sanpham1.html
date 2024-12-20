@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn phím HE Pulsar</title>
+    <style>
+        /* Reset cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo h1 {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e63946;
+        }
+
+        /* Main Content */
+        .product-container {
+            display: flex;
+            padding: 50px 20px;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Sidebar hình ảnh nhỏ */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-gallery img {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1);
+            border-color: #e63946;
+        }
+
+        /* Ảnh lớn */
+        .main-image {
+            width: 80%; /* hoặc giá trị lớn hơn tùy ý */
+            max-width: 800px; /* Giới hạn tối đa */
+            height: auto; /* Đảm bảo không bị méo */
+            margin: 0 auto; /* Căn giữa nếu cần */
+        }
+
+        .main-image img {
+            width: 800px;
+            height: 600px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Thông tin sản phẩm */
+        .product-info {
+            max-width: 400px;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .product-info h2 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #e63946;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* Thông số kỹ thuật */
+        .specifications-container {
+            padding: 30px 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .specifications-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ddd;
+            padding-bottom: 5px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Switch Nam Châm */
+        .switch-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 20px;
+            background-color: #ffffff;
+            color: #333;
+            align-items: flex-start;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1400px;
+        }
+
+        .switch-container .image {
+            flex: 2;
+        }
+
+        .switch-container .image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content {
+            flex: 1.5;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .switch-container .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .switch-container .content h3 {
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .switch-container .content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .switch-container .content ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .switch-container .content ul li::before {
+            content: "\2022";
+            color: #e63946;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+        }
+
+        .switch-container .content .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>RAPID TRIGGER</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">TRANG CHỦ</a></li>
+                <li><a href="infor.html">GIỚI THIỆU</a></li>
+                <li><a href="switch.html">SWITCH</a></li>
+                <li><a href="danhgia.html">ĐÁNH GIÁ</a></li>
+                <li><a href="https://playzone.vn/collections/ba-n-phi-m-he-rapid-trigger">LINK MUA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="product-container">
+            <!-- Sidebar hình ảnh nhỏ -->
+            <div class="image-gallery">
+                <img src="img/sp1.png" alt="Bàn phím 1" onclick="changeImage(this)">
+                <img src="img/sp1-1.png" alt="Bàn phím 2" onclick="changeImage(this)">
+                <img src="img/sp1-2.png" alt="Bàn phím 3" onclick="changeImage(this)">
+                <img src="img/sp1-3.png" alt="Bàn phím 4" onclick="changeImage(this)">
+            </div>
+
+            <!-- Ảnh lớn ở giữa -->
+            <div class="main-image">
+                <img id="big-image" src="img/sp1.png" alt="Bàn phím chính">
+            </div>
+
+            <!-- Thông tin sản phẩm bên phải -->
+            <div class="product-info">
+                <h2>Bàn phím HE Pulsar PCMK-2 HE TKL ANSI</h2>
+                <p class="price"><strong>4.290.000₫ VNĐ</strong></p>
+                <p>- Hỗ trợ Rapid Trigger - Tốc độ phản hồi cực nhanh</p>
+                <p>- True 8K Polling Rate</p>
+                <p>- Keycap PBT Double-shot</p>
+                <p>- Switch nam châm hot swap N-S Pole</p>
+                <p>- Tương thích Windows/Mac</p>
+                <p>- Keycap PBT Double-shot</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <div class="image">
+                <p>Bàn phím HE Pulsar PCMK 2 HE TKL ANSI - Hỗ trợ Rapid Trigger</p>
+                <h1>Pulsar Hall Effect Gaming Keyboard</h1>
+                <p>Chào mừng đến kỷ nguyên bàn phím HE được thiết kế đặc biệt dành cho gaming. Không còn các bàn phím cơ với tính năng "làm màu", bàn phím HE được trang bị những tính năng quan trọng đã chứng minh sự hiệu quả của mình trong các tựa game eSport. Bằng chứng là rất nhiều game thủ chuyên nghiệp tựa game Valorant, CS2 đã dần chuyển qua sử dụng bàn phím HE.</p>
+                <p>Và Pulsar PCMK2 HE cũng là bàn phím HE như vậy.</p>
+            </div>
+        <!-- Thông số kỹ thuật -->
+        <section class="content">
+            <h2>Thông số kỹ thuật</h2>
+            <table>
+                <tr>
+                    <th>Kích thước</th>
+                    <td>Dài: 355mm (13.9in) | Rộng: 127mm (5in) | Cao: 37mm (1.45in)</td>
+                </tr>
+                <tr>
+                    <th>Trọng lượng</th>
+                    <td>963g (± 1g) / 33.9oz</td>
+                </tr>
+                <tr>
+                    <th>Keycap</th>
+                    <td>PBT Double-shot keycaps</td>
+                </tr>
+                <tr>
+                    <th>Switch</th>
+                    <td>
+                        Switch HE | Loại: Linear<br>
+                        Lực nhấn ban đầu: 30±7gf<br>
+                        Tổng hành trình: 4.1±0.2mm<br>
+                        Từ thông ban đầu: 75±15Gs<br>
+                        Từ thông hết hành trình: 700±80Gs<br>
+                        Độ bền: 150 triệu lần nhấn
+                    </td>
+                </tr>
+                <tr>
+                    <th>Mạch</th>
+                    <td>Hot swap switch nam châm Cực Bắc-Nam</td>
+                </tr>
+                <tr>
+                    <th>Kết nối</th>
+                    <td>Cáp rời (USB-C)</td>                   
+                </tr>
+                <tr>
+                    <th>Tương thích</th>
+                    <td>
+                        Cổng USB 2.0 hoặc cao hơn <br>
+                        Windows 7 hoặc cao hơn <br>
+                        Mac OS x 10.10 hoặc cao hơn
+                    </td>                   
+                </tr>
+                <tr>
+                    <th>Thông số khác</th>
+                    <td>
+                        Layout TKL (80%) <br>
+                        Plate nhôm <br>
+                        3 lớp tiêu âm <br>
+                        Đáy trong suốt <br>
+                        Rapid trigger, Quick tap, Web driver <br>
+                        Polling rate: 8000Hz
+                    </td>                   
+                </tr>
+                <tr>
+                    <th>Phụ kiện kèm theo</th>
+                    <td>
+                        1x Cáp USB-C <br>
+                        1x Switch + Keycap puller<br>
+                        1x Tấm chắn bụi <br>
+                        1x Túi đựng bàn phím<br>
+                        1x Sticker<br>
+                        1x Sách hướng dẫn sử dụng
+                    </td>                   
+                </tr>
+                <tr>
+                    <th>Thương hiệu</th>
+                    <td>Designed by Pulsar Korea</td>                   
+                </tr>
+                <tr>
+                    <th>Bảo hành</th>
+                    <td>24 tháng đổi mới</td>                   
+                </tr>
+            </table>
+        </section>
+        </div>
+        <!-- Switch Nam Châm Section -->
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp1-4.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Switch nam châm Gateron x Pulsar</h1>
+                <p>Switch nam châm nhận đầy đủ hành trình của phím với độ chính xác lên đến 0.1mm. Người dùng có thể tuỳ chỉnh điểm nhận phím theo sở thích của mình, tăng tốc độ gõ phím cũng như cải thiện trải nghiệm chơi game.</p>
+
+                <h3>Rapid Trigger</h3>
+                <p>Rapid Trigger là công nghệ thay đổi điểm nhận và thả phím, giảm thiểu tối đa input lag. Phím được nhận ngay khi nhấn và hủy nhanh chóng khi thả ra, giúp input nhanh hơn. Lý tưởng cho game thủ FPS, tính năng này giúp cải thiện phản hồi và mang lại lợi thế cạnh tranh.</p>
+
+                <h3>Adjustable Actuation</h3>
+                <p>Tính năng đổi điểm nhận phím giúp bạn thay đổi độ sâu nhấn phím để kích hoạt phím, phạm vi từ 0.1mm đến 4.0mm. Tính năng cá nhân hoá này giúp bạn tối ưu phản hồi của từng phím dựa trên cách gõ phím, mang lại tốc độ nhập liệu nhanh và chính xác hơn.</p>
+
+                <h3>Quick Tap</h3>
+                <p>Tính năng Quick Tap giúp phím nhận ngay lập tức khi một phím được nhấn. Nhằm giải quyết vấn đề hủy phím khi 2 phím được ghi nhận cùng lúc, Quick Tap giúp ưu tiên phím được nhấn cuối cùng và tự động hủy kích hoạt phím còn lại. Khi phím vừa nhấn thả ra, phím được nhận ban đầu được tự động ghi trở lại mà không cần nhấn lại phím.</p>
+
+                <p class="note">Lưu ý: game Counter Strike 2 không hỗ trợ Quick Tap, bạn cần tắt tính năng này trước khi chơi game.</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp1-5.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Công ngệ và thiết kế nổi bật</h1>             
+
+                <h3>True 8K Polling Rate</h3>
+                <p>True 8K polling rate quét vị trí của mỗi phím với tốc độ ấn tượng lên đến 8KHz mang lại khản năng kiểm soát mượt mà và nhanh chóng. Tốc độ vượt trội này giảm độ trễ của bàn phím xuống chỉ còn 0.125ms, lý tưởng cho các tình huống chơi game đòi hỏi sự phản hồi nhanh chóng.</p>
+
+                <h3>Cấu Trúc Giảm Âm 3 Lớp</h3>
+                <p>Được thiết kế với cấu trúc giảm âm ba lớp, bàn phím Pulsar PCMK2 HE giảm thiểu tiếng ồn và nâng cao trải nghiệm gõ phím. Các lớp vật liệu hấp thụ âm thanh chính và phụ nằm phía trên và dưới PCB bên trong giúp giảm hiệu quả rung động và tiếng ồn khi nhấn phím. Thêm vào đó, một lớp silicone dày ở đáy làm giảm độ vang. Thiết kế này đảm bảo trải nghiệm sử dụng yên tĩnh và thoải mái hơn, tạo ra môi trường không bị gián đoạn dù bạn đang chơi game hay làm việc.</p>
+
+                <h3>N-S Pole, Hot Swap</h3>
+                <p>Được thiết kế để tương thích với switch nam châm, bàn phím Pulsar PCMK2 HE hỗ trợ cả cấu hình cực N và cực S, cho phép người dùng dễ dàng thay đổi hệ thống switch của mình. Giải pháp này mang đến sự linh hoạt trong việc kết hợp các loại switch khác nhau trên cùng một bàn phím, tạo ra trải nghiệm gõ phím cá nhân hóa. Kết hợp các cảm giác nhấn phím và tốc độ phản hồi khác nhau để tạo nên cảm giác gõ phím hoàn hảo, phản ánh phong cách và sở thích riêng của bạn.</p>
+
+                <p class="note">Lưu ý: game Counter Strike 2 không hỗ trợ Quick Tap, bạn cần tắt tính năng này trước khi chơi game.</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp1-6.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Phần Mềm Chạy Web "BIBIMBAP"</h1>             
+
+                <p>Phần mềm Bibimbap của Pulsar là dạng driver chạy nền web, cung cấp khả năng tùy chỉnh bàn phím tương thích với cả Windows và Mac. Người dùng có thể dễ dàng tùy chỉnh nhiều tính năng, bao gồm cài đặt màu LED, rapid trigger, tốc độ phản hồi phím, và chức năng macro để tạo ra profile tối ưu phù hợp với nhu cầu của mình. Giống như các thành phần đa dạng trong món bibimbap, bạn có thể kết hợp các chức năng khác nhau để tạo ra bàn phím hoàn hảo cho riêng mình.</p>
+            </div>
+        </div>
+    </main>
+        
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 RAPID TRIGGER. Tất cả các quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Script thay đổi ảnh lớn -->
+    <script>
+        function changeImage(smallImg) {
+            const bigImage = document.getElementById('big-image');
+            bigImage.src = smallImg.src;
+        }
+    </script>
+</body>
+</html>

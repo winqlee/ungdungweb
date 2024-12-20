@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn phím HE Pulsar</title>
+    <style>
+        /* Reset cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo h1 {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e63946;
+        }
+
+        /* Main Content */
+        .product-container {
+            display: flex;
+            padding: 50px 20px;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Sidebar hình ảnh nhỏ */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-gallery img {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.1);
+            border-color: #e63946;
+        }
+
+        /* Ảnh lớn */
+        .main-image {
+            width: 80%; /* hoặc giá trị lớn hơn tùy ý */
+            max-width: 800px; /* Giới hạn tối đa */
+            height: auto; /* Đảm bảo không bị méo */
+            margin: 0 auto; /* Căn giữa nếu cần */
+        }
+
+        .main-image img {
+            width: 800px;
+            height: 600px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Thông tin sản phẩm */
+        .product-info {
+            max-width: 400px;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .product-info h2 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #e63946;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* Thông số kỹ thuật */
+        .specifications-container {
+            padding: 30px 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .specifications-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ddd;
+            padding-bottom: 5px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Switch Nam Châm */
+        .switch-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+            gap: 20px;
+            background-color: #ffffff;
+            color: #333;
+            align-items: flex-start;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1400px;
+        }
+
+        .switch-container .image {
+            flex: 2;
+        }
+
+        .switch-container .image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content {
+            flex: 1.5;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-container .content h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .switch-container .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .switch-container .content h3 {
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .switch-container .content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .switch-container .content ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .switch-container .content ul li::before {
+            content: "\2022";
+            color: #e63946;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+        }
+
+        .switch-container .content .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>RAPID TRIGGER</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">TRANG CHỦ</a></li>
+                <li><a href="infor.html">GIỚI THIỆU</a></li>
+                <li><a href="switch.html">SWITCH</a></li>
+                <li><a href="danhgia.html">ĐÁNH GIÁ</a></li>
+                <li><a href="https://playzone.vn/collections/ba-n-phi-m-he-rapid-trigger">LINK MUA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="product-container">
+            <!-- Sidebar hình ảnh nhỏ -->
+            <div class="image-gallery">
+                <img src="img/sp2.png" alt="Bàn phím 1" onclick="changeImage(this)">
+                <img src="img/sp2-1.png" alt="Bàn phím 2" onclick="changeImage(this)">
+                <img src="img/sp2-2.png" alt="Bàn phím 3" onclick="changeImage(this)">
+                <img src="img/sp2-3.png" alt="Bàn phím 4" onclick="changeImage(this)">
+            </div>
+
+            <!-- Ảnh lớn ở giữa -->
+            <div class="main-image">
+                <img id="big-image" src="img/sp2.png" alt="Bàn phím chính">
+            </div>
+
+            <!-- Thông tin sản phẩm bên phải -->
+            <div class="product-info">
+                <h2>Bàn phím từ HE Pwnage Zenblade 65 | Magnetic Switch - Rapid Trigger</h2>
+                <p class="price"><strong>5.280.000₫ </strong></p>
+                <p>Bàn phím HE full nhôm tiêu chuẩn aerospace được CNC nguyên khối.</p>
+                <ul>                  
+                    <li>Công nghệ switch nam châm Gateron 2.0 mới nhất: hỗ trợ Rapid Trigger và Actuation Point Changer.</li>
+                    <li>Âm thanh yên tĩnh: đệm tiêu âm silicone và poron trang bị sẵn.</li>
+                    <li>Độ trễ dưới 1ms.</li>
+                    <li>Kích thước 65%.</li>
+                    <li>Phiên bản Founder's Edition: phần đáy độc quyền được anod màu đỏ nổi bật.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Thông số kỹ thuật -->
+        <section class="specifications-container">
+            <h2>Thông số kỹ thuật</h2>
+            <table>
+                <tr>
+                    <th>Kích thước</th>
+                    <td>13.1 x 4.8 x 1.5 in (33.2 x 12.3 x 3.9 cm)</td>
+                </tr>
+                <tr>
+                    <th>Trọng lượng</th>
+                    <td>3.4 lbs (1.5 kg)</td>
+                </tr>
+                <tr>
+                    <th>Keycap</th>
+                    <td>PBT (Xuyên LED) - Cherry Profile</td>
+                </tr>
+                <tr>
+                    <th>Switch</th>
+                    <td>
+                        Mangetic Gateron 2.0 - Pre-lube - Lực nhấn 30gf (actuation)/60gf(bottom out)<br>
+                        Loại Linear<br>
+                        Hỗ trợ Rapid Trigger<br>
+                        Có thể điều chỉnh điểm nhận phím<br>
+                        Độ bền 150M lần nhấn                    
+                    </td>
+                </tr>
+                <tr>
+                    <th>Mạch</th>
+                    <td>PCB trang bị cảm biến Hall</td>
+                </tr>
+                <tr>
+                    <th>Kết nối</th>
+                    <td>Cáp rời (USB-C)<br>
+                        Keycap puller<br>
+                        Custom grip tape
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <th>Tương thích</th>
+                    <td>Layout 65%<br>
+                        Đèn LED RGB<br>
+                        Chất liệu nhôm chuẩn hàng không được CNC<br>
+                        Trang bị đệm Poron tiêu âm<br>
+                        Chân chống hấp thụ lực<br>
+                        Hỗ trợ phần mềm chạy nền web
+                   </td>                 
+                </tr>
+                <tr>
+                    <th>Phụ kiện kèm theo</th>
+                    <td>Cáp USB-A to C</td>
+                </tr>
+                <tr>
+                    <th>Thương hiệu</th>
+                    <td>Designed by Pwnage USA</td>
+                </tr>
+                <tr>
+                    <th>Bảo hành</th>
+                    <td>Bảo hành 1 năm</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Switch Nam Châm Section -->
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp2-4.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Hệ thống switch nam châm cao cấp từ Gateron</h1>
+                <h3>Cơ chế switch Analog</h3>
+                <p>Bằng những đột phá trong công nghệ switch nam châm, switch nam châm Gateron nói riêng và bàn phím HE Pwnage Zenblade 65 nói chung cho tốc độ phản hồi nhanh cùng quá trình nhấn/nhả phím luôn được theo dõi nhằm khai thác các tính năng cao cấp mà bàn phím HE phải có.</p>
+
+                <h3>Switch nam châm Hall Effect Gateron 2.0</h3>
+                <p>Phiên bản switch nam châm hall effect mới nhất của Gateron với cấu trúc dual rail nhằm tăng sự ổn định của phím khi nhấn. Switch được pre-lube giúp cảm giác gõ phím mượt hơn và âm thanh gõ phím hay hơn.</p>
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp2-5.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Công nghệ cao cấp Rapid Trigger</h1>             
+                <p>Bàn phím HE Pwnage Zenblade 65 nhờ trang bị switch nam châm và cảm biến Hall Effec trên PCBA giúp tích hợp những tính năng mới và cao cấp nhất của các bàn phím gaming hiện nay.</p>
+                <h3>Công nghệ thay đổi điểm nhận phím (Adjustable Actuation Point)</h3>
+                <p>Công nghệ này không thể trang bị trên các bàn phím cơ truyền thống, đây là công ghệ đặc trưng chỉ có các bàn phím HE như Pwnage Zenblade 65 được trang bị hệ thống switch nam châm mới có. Cơ chế này giúp bạn custom điểm nhận phím của từng phím theo thói quen sử dụng hay sở thích của bạn, hay nói đơn giản là bạn có thể custom độ nhạy của từng phím sao cho phù hợp nhất cho cá nhân bạn.</p>
+
+                <h3>Công nghệ Rapid Trigger</h3>
+                <p>Là công nghệ cốt lõi phải có trên các bàn phím gaming thế hệ mới, Pwnage Zenblade 65 với Rapid Trigger giúp nhận/reset phím nhanh hơn. Vì vậy bạn có thể spam phím nhanh hơn hoặc nhân vật trong game sẽ phản ứng nhanh hơn với các lệnh nhấn/nhả phím của bạn so với sử dụng bàn phím cơ truyền thống.</p>
+
+            </div>
+        </div>
+        <div class="switch-container">
+            <!-- Hình ảnh -->
+            <div class="image">
+                <img src="img/sp2-6.png" alt="Switch nam châm Gateron x Pulsar">
+            </div>
+
+            <!-- Nội dung -->
+            <div class="content">
+                <h1>Cấu thành từ những vật liệu cao cấp</h1>       
+                <p>Khung vỏ nhôm CNC nguyên khối</p>
+                <ul>
+                    <li>Tạo nên từ nhôm tiêu chuẩn hàng không</li>
+                </ul>
+                <p>Đệm tiêu âm Poron</p>
+                <ul>
+                    <li>Foam Poron được sử dụng để giảm tiếng ồng khi gõ phím, nhờ đó giúp cảm giác và âm thanh gõ phím hay hơn.</li>
+                </ul>
+                <p>Kết cấu đa lớp</p>
+                <ul>
+                    <li>Keycap PBT Cherry profile.</li>
+                    <li>Switch Gateron 2.0 và thanh cân bằng phím dài.</li>
+                    <li>Top plate.</li>
+                    <li>Đệm tiêu âm silicone cho plate.</li>
+                    <li>PCBA.</li>
+                    <li>Foam Poron tiêu âm cho khung vỏ.</li>
+                    <li>Khung vỏ nhôm hàng không được CNC.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+        
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 RAPID TRIGGER. Tất cả các quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- Script thay đổi ảnh lớn -->
+    <script>
+        function changeImage(smallImg) {
+            const bigImage = document.getElementById('big-image');
+            bigImage.src = smallImg.src;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rapid Trigger</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333333;
+        }
+        header {
+            background-color: #000000;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .logo h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 36px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+        }
+        nav a:hover {
+            background-color: #555555;
+            border-radius: 5px;
+        }
+        .intro {
+            position: relative;
+            text-align: center;
+            color: white;       
+        }
+        .intro img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+        .intro-text {
+            position: absolute;
+            top: 40%;   
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .intro h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+            font-family: 'Georgia', serif;
+        }
+        .intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .products {
+            padding: 20px;
+        }
+        .products h3 {
+            text-align: center;
+            color: #000000;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+        .product {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img.main-image {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .product:hover img {
+            transform: scale(1.1);
+        }
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .thumbnails img {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border 0.3s ease;
+        }
+        .thumbnails img:hover {
+            border-color: #000000;
+        }
+        .view-detail-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .product:hover .view-detail-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #000000;
+            color: white;
+            margin-top: 20px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>RAPID TRIGGER</h1>
+        </div>
+        <nav>
+            <a href="index.html" target="_blank">TRANG CHỦ</a>
+            <a href="infor.html" target="_blank">GIỚI THIỆU</a>           
+            <a href="switch.html" target="_blank">SWITCH</a>
+            <a href="danhgia.html" target="_blank">ĐÁNH GIÁ</a>
+            <a href="https://playzone.vn/collections/ba-n-phi-m-he-rapid-trigger" target="_blank">LINK MUA</a>
+        </nav>
+    </header>
+    <div class="intro">
+        <img src="img/banner.png" alt="Bàn phím">
+        <div class="intro-text">
+            <h1>Bàn phím HE - Hỗ trợ Rapid Trigger</h1>
+            <p>Là dòng bàn phím hiện đại nhất hiện nay tối ưu hiệu năng thuần túy cho bàn phím gaming, bàn phím HE sử dụng công nghệ switch nam châm mới nhất kết hợp firmware hiện đại giúp mọi thao tác trong game của bạn trở nên chính xác với tốc độ phản hồi nhanh hơn.</p>
+            <p>Tính năng Rapid Trigger được tích hợp trực tiếp trên firmware giúp mọi thao tác trở nên chính xác, nhanh nhạy với tốc độ phản hồi siêu tốc mà các bàn phím cơ truyền thống không thể thực hiện.</p>
+            <p>Thiết kế bàn phím HE hoàn toàn phù hợp trở thành bàn phím gaming phải có trong mọi setup chơi game của các game thủ.</p>
+        </div>
+    </div>
+    <section class="products">
+        <h3>Sản phẩm nổi bật</h3>
+    
+        <!-- Nút chính chứa mũi tên -->
+        <div class="brand-filter" style="text-align: center; margin-bottom: 20px;">
+            <button id="main-brand-button" onclick="toggleBrandButtons()" style="padding: 10px; font-size: 16px;">
+                Thương Hiệu ▼
+            </button>
+            <!-- Các nút con: ban đầu ẩn đi -->
+            <div id="brand-buttons" style="display: none; margin-top: 10px;">
+                <button onclick="showProducts('arbiter')" style="margin: 5px;">Arbiter Studio</button>
+                <button onclick="showProducts('lamzu')" style="margin: 5px;">Lamzu</button>
+                <button onclick="showProducts('drunkdeer')" style="margin: 5px;">DrunkDeer</button>
+                <button onclick="showProducts('all')" style="margin: 5px;">Tất cả sản phẩm</button>
+
+            </div>
+        </div>
+    
+        <div class="product-grid">
+            <!-- Sản phẩm 1-3: Arbiter Studio -->
+            <div class="product brand-arbiter">
+                <img src="img/anh1.png" alt="Bàn phím 1" class="main-image">
+                <h4>Bàn phím 1</h4>
+                <p class="price">6.000.000đ</p>
+                <div class="thumbnails">
+                    <img src="img/anh1-1.png" alt="Thumb 1" onclick="changeImage(this, 'img/anh1-1.png')">
+                    <img src="img/anh1.png" alt="Thumb 2" onclick="changeImage(this, 'img/anh1.png')">
+                </div>
+                <a href="sanpham1.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+            <div class="product brand-arbiter">
+                <img src="img/anh2.png" alt="Bàn phím 2" class="main-image">
+                <h4>Bàn phím 2</h4>
+                <p class="price">5.200.000đ</p>
+                <div class="thumbnails">
+                    <img src="img/anh2.png" alt="Thumb 1" onclick="changeImage(this, 'img/anh2.png')">
+                    <img src="img/anh2-2.png" alt="Thumb 2" onclick="changeImage(this, 'img/anh2-2.png')">
+                </div>
+                <a href="sanpham2.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+            <div class="product brand-arbiter">
+                <img src="img/anh3.png" alt="Bàn phím 3" class="main-image">
+                <h4>Bàn phím 3</h4>
+                <p class="price">4.500.000đ</p>
+                <div class="thumbnails">
+                    <img src="img/anh3.png" alt="Thumb 1" onclick="changeImage(this, 'img/anh3.png')">
+                    <img src="img/anh3-3.png" alt="Thumb 2" onclick="changeImage(this, 'img/anh3-3.png')">
+                </div>
+                <a href="sanpham3.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+    
+            <!-- Sản phẩm 4-5: Lamzu -->
+            <div class="product brand-lamzu">
+                <img src="img/anh4.png" alt="Bàn phím 4" class="main-image">
+                <h4>Bàn phím 4</h4>
+                <p class="price">4.800.000đ</p>
+                <div class="thumbnails">
+                    <img src="img/anh4.png" alt="Thumb 1" onclick="changeImage(this, 'img/anh4.png')">
+                    <img src="img/anh4-4.png" alt="Thumb 2" onclick="changeImage(this, 'img/anh4-4.png')">
+                </div>
+                <a href="sanpham4.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+            <div class="product brand-lamzu">
+                <img src="img/anh5.png" alt="Bàn phím 5" class="main-image">
+                <h4>Bàn phím 5</h4>
+                <p class="price">5.000.000đ</p>
+                <a href="sanpham5.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+    
+            <!-- Sản phẩm 6-8: DrunkDeer -->
+            <div class="product brand-drunkdeer">
+                <img src="img/anh6.png" alt="Bàn phím 6" class="main-image">
+                <h4>Bàn phím 6</h4>
+                <p class="price">5.200.000đ</p>
+                <a href="sanpham6.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+            <div class="product brand-drunkdeer">
+                <img src="img/anh7.png" alt="Bàn phím 7" class="main-image">
+                <h4>Bàn phím 7</h4>
+                <p class="price">4.300.000đ</p>
+                <a href="sanpham7.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+            <div class="product brand-drunkdeer">
+                <img src="img/anh8.png" alt="Bàn phím 8" class="main-image">
+                <h4>Bàn phím 8</h4>
+                <p class="price">4.400.000đ</p>
+                <a href="sanpham8.html" class="view-detail-btn">Xem chi tiết</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2024 Rapid Trigger. All rights reserved.</p>
+    </footer>
+    <script>
+        function changeImage(thumbnail, imagePath) {
+            const product = thumbnail.closest('.product');
+            const mainImage = product.querySelector('.main-image');
+            mainImage.src = imagePath;
+        }
+    // Hàm mở/đóng các nút thương hiệu
+        function toggleBrandButtons() {
+            const brandButtons = document.getElementById('brand-buttons');
+            const mainButton = document.getElementById('main-brand-button');
+            const isVisible = brandButtons.style.display === 'block';
+            brandButtons.style.display = isVisible ? 'none' : 'block';
+            mainButton.innerHTML = isVisible ? 'Thương Hiệu ▼' : 'Thương Hiệu ▲';
+        }   
+
+        function showProducts(brand) {
+            const allProducts = document.querySelectorAll('.product');
+            allProducts.forEach(product => {
+                product.style.display = brand === 'all' || product.classList.contains(`brand-${brand}`)
+                    ? 'block'
+                    : 'none';
+            });
+        }
+
+        // Xử lý lỗi khi ảnh không tải được
+        document.querySelectorAll('.product img.main-image').forEach(img => {
+            img.onerror = () => {
+                img.src = 'img/default.png'; // Hình ảnh mặc định nếu lỗi
+            };
+        });        
+    </script>
+</body>
+</html>
